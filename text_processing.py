@@ -44,10 +44,13 @@ def get_tokens(text, pattern=None, stemming=True, lemmatizing=False):
         if stemming:
             review = [ps.stem(word) for word in words if not word in set(stopwords.words('english'))]
             review = ' '.join(review)
-            stem_corpus.append(review)
+            if len(review) > 2:
+                stem_corpus.append(review)
+        
         if lemmatizing:
             review = [wn.lemmatize(word) for word in words if not word in set(stopwords.words('english'))]
             review = ' '.join(review)
-            lem_corpus.append(review)
+            if len(review) > 2:
+                lem_corpus.append(review)
 
     return stem_corpus, lem_corpus
